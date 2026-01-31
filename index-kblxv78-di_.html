@@ -141,7 +141,7 @@
 
     /* Input Dock */
     .input-dock { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(to top, var(--bg-deep) 30%, transparent); z-index: 30; display: flex; flex-direction: column; align-items: center; }
-    body.mode-day .input-dock { background: linear-gradient(to top, rgba(255,255,255,0.8) 30%, transparent); }
+    body.mode-day .input-dock { background: linear-gradient(to top, rgba(255,255,255,0.6) 18%, transparent); }
     #filePreview { display: none; width: 100%; max-width: 400px; background: rgba(0,0,0,0.8); border: 1px solid var(--primary); border-radius: 12px; padding: 10px; margin-bottom: 10px; align-items: center; justify-content: space-between; backdrop-filter: blur(10px); }
     #filePreview.active { display: flex; animation: slideIn 0.3s; }
     .file-info { font-size: 0.8rem; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px; }
@@ -293,7 +293,7 @@ const STORAGE = {
     API_KEY: 'di_apiKey',
     MODEL: 'di_modelName',
     SYSTEM_ROLE: 'di_systemRole',
-    USER_ID: 'di_username',
+    USER_ID: 'di_userName',
     BG_IMAGE: 'di_bgImage',
     CUSTOM_CSS: 'di_customCss',
     SOLAR_MODE: 'di_solarMode',
@@ -317,11 +317,11 @@ const KODUX = {
    ═══════════════════════════════════════════════════════════════ */
 
 function initDIConstants() {
-    const di_username = localStorage.getItem('di_username') || 'Viajante';
+    const di_userName = localStorage.getItem('di_userName') || 'Viajante';
     const di_infodoseName = localStorage.getItem('di_infodoseName') || 'KOBLLUX';
     const di_apiKey = localStorage.getItem('di_apiKey') || '';
-    const di_modelName = localStorage.getItem('di_modelName') || 'google/gemini-2.0-flash-exp';
-    const di_systemRole = localStorage.getItem('di_systemRole') || 'Você é o Oráculo...';
+    const di_modelName = localStorage.getItem('di_modelName') || 'nvidia/nemotron-3-nano-30b-a3b:free';
+    const di_systemRole = localStorage.getItem('di_systemRole') || 'oi Dual';
     const di_solarMode = localStorage.getItem('di_solarMode') || 'night';
     const di_assistantEnabled = localStorage.getItem('di_assistantEnabled') === '1';
     const di_trainingActive = localStorage.getItem('di_trainingActive') === '1';
@@ -330,7 +330,7 @@ function initDIConstants() {
     // Atualizar elementos da UI
     const usernameDisplay = document.getElementById('usernameDisplay');
     if (usernameDisplay) {
-        usernameDisplay.textContent = di_username;
+        usernameDisplay.textContent = di_userName;
     }
     
     const modeIndicator = document.getElementById('modeIndicator');
@@ -346,17 +346,17 @@ function initDIConstants() {
     if (systemRoleInput) systemRoleInput.value = di_systemRole;
     
     const inputUserId = document.getElementById('inputUserId');
-    if (inputUserId) inputUserId.value = di_username;
+    if (inputUserId) inputUserId.value = di_userName;
     
     const inputModel = document.getElementById('inputModel');
     if (inputModel) inputModel.value = di_modelName;
     
     // Salvar no localStorage se não existir
-    if (!localStorage.getItem('di_username')) localStorage.setItem('di_username', di_username);
+    if (!localStorage.getItem('di_userName')) localStorage.setItem('di_userName', di_userName);
     if (!localStorage.getItem('di_infodoseName')) localStorage.setItem('di_infodoseName', di_infodoseName);
     if (!localStorage.getItem('di_solarMode')) localStorage.setItem('di_solarMode', di_solarMode);
     
-    console.log('[DI_CONSTANTS] Inicializado:', { di_username, di_infodoseName, di_apiKey: di_apiKey ? '✓' : '✗' });
+    console.log('[DI_CONSTANTS] Inicializado:', { di_userName, di_infodoseName, di_apiKey: di_apiKey ? '✓' : '✗' });
 }
 
 // Chamar ao carregar a página
